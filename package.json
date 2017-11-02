@@ -11,6 +11,7 @@
   "dependencies": {
     "chromedriver": "^2.33.0",
     "cucumber": "^3.0.4",
+    "cucumber-pretty": "0.0.5",
     "nightwatch": "^0.9.16",
     "nightwatch-cucumber": "^8.2.2"
   }

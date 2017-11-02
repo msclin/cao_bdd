@@ -1,3 +1,7 @@
+const loginPageXpathTemplates = {
+  loginPageErrorByPosition: position => `//div[@id="loginError"]//li[${ position }]`
+};
+
 module.exports = {
   commands: [
     {
@@ -51,12 +55,28 @@ module.exports = {
         return this.expect.element('@createAccountLink').text.to.contain(expectedText);
       },
 
+      verifyLoginErrorByPositionAndExpectedText(position, expectedText) {
+        const xpath = loginPageXpathTemplates.loginPageErrorByPosition(position);
+
+        this.api.useXpath();
+
+        return this.expect.element(xpath).text.to.contain(expectedText);
+      },
+
+      verifyLoginErrorsAreVisible() {
+        return this.expect.element('@loginErrorsContainer').to.be.visible;
+      },
+
       verifyNeedHelpLinkIsVisible() {
         return this.expect.element('@needHelpLink').to.be.visible;
       },
 
       verifyNeedHelpLinkText(expectedText) {
         return this.expect.element('@needHelpLink').text.to.equal(expectedText);
+      },
+
+      verifyNoLoginErrorsAreVisible() {
+        return this.expect.element('@loginErrorsContainer').to.not.be.visible;
       },
 
       verifyPageHeaderIsVisible() {
@@ -151,6 +171,11 @@ module.exports = {
     footerLinkTermsOfUse: {
       locateStrategy: 'xpath',
       selector: '//a[text()="Terms of Use"]'
+    },
+
+    loginErrorsContainer: {
+      locateStrategy: 'xpath',
+      selector: '//div[@id="loginError"]'
     },
 
     needHelpLink: {

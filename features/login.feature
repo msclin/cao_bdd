@@ -6,7 +6,7 @@ Feature: Common App Login Page
   Background:
     Given I navigate to The Common Application's login screen
   
-  @smoke
+  @smoke @regression
   Scenario: Verify The Initial State of the Common App's Login Page
     Then I expect the Common App Helper Status to be visible
       And I expect the Common App Helper Status text to contain text "Deadline coming up? You'll need to submit your application by 11:59pm your local time on the deadline date--but you don't have to wait until then. Learn more about deadlines here. Need help or have a question? The Applicant Solutions Center is open 24 hours a day, 7 days a week."
@@ -31,14 +31,56 @@ Feature: Common App Login Page
       And I expect the ADA compliance link to contain text "ADA-Compliant Application PDF"
       And I expect the system requirements link to be visible
       And I expect the system requirements link to contain text "System Requirements"
+      And I expect no login errors to be visible
 
-  @smoke @marc-debug
+  @smoke @regression
   Scenario: Log Into A Common Application Account
     When I enter "marc.clinedinst@gmail.com" in the username field
     Then I expect the username field to have a value of "marc.clinedinst@gmail.com"
+      And I expect no login errors to be visible
 
-    And I enter "C0mM0n4pp1?" in the password field
+    When I enter "C0mM0n4pp1?" in the password field
     Then I expect the password field to have a value of "C0mM0n4pp1?"
+      And I expect no login errors to be visible
 
     When I click on the Sign In button
     Then I have logged in successfully
+
+  @smoke @regression
+  Scenario: Verify Login Form Errors After Immediately Clicking Submit Button
+    Then I expect no login errors to be visible
+
+    When I click on the Sign In button
+    Then I expect login errors to be visible
+      And I expect the login error in position 1 to be "Login was unsuccessful. Please correct the errors and try again."
+      And I expect the login error in position 2 to be "The email provided is incorrect."
+
+  @smoke @regression @marc-debug
+  Scenario: Verify Login Form Errors After Entering Only Username And Clicking Submit Button
+    Then I expect no login errors to be visible
+
+    When I enter "marc.clinedinst@gmail.com" in the username field
+    Then I expect the username field to have a value of "marc.clinedinst@gmail.com"
+      And I expect no login errors to be visible
+  
+    When I click on the Sign In button
+    Then I expect login errors to be visible
+      And I expect the login error in position 1 to be "Login was unsuccessful. Please correct the errors and try again."
+      And I expect the login error in position 2 to be "The user name or password provided is incorrect."
+
+  @smoke @regression @marc-debug
+  Scenario: Verify Login Form Errors After Entering Username and Incorrect Password
+    Then I expect no login errors to be visible
+
+    When I enter "marc.clinedinst@gmail.com" in the username field
+    Then I expect the username field to have a value of "marc.clinedinst@gmail.com"
+      And I expect no login errors to be visible
+
+    When I enter "foobar" in the password field
+    Then I expect the password field to have a value of "foobar"
+      And I expect no login errors to be visible
+  
+    When I click on the Sign In button
+    Then I expect login errors to be visible
+      And I expect the login error in position 1 to be "Login was unsuccessful. Please correct the errors and try again."
+      And I expect the login error in position 2 to be "The user name or password provided is incorrect."

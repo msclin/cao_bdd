@@ -5,7 +5,7 @@ defineSupportCode(({ Given, Then, When }) => {
   Given(/^I navigate to The Common Application's login screen$/, () => {
     const loginPage = client.page.loginPage();
 
-    loginPage.navigate().waitForElementVisible('body', 1000);
+    loginPage.navigate();
 
     return client;
   });
@@ -189,6 +189,30 @@ defineSupportCode(({ Given, Then, When }) => {
     const accountDashboard = client.page.accountDashboard();
 
     accountDashboard.verifyDashboardTabIsVisible();
+
+    return client;
+  });
+
+  Then(/^I expect no login errors to be visible$/, () => {
+    const loginPage = client.page.loginPage();
+
+    loginPage.verifyNoLoginErrorsAreVisible();
+
+    return client;
+  });
+
+  Then(/^I expect login errors to be visible$/, () => {
+    const loginPage = client.page.loginPage();
+
+    loginPage.verifyLoginErrorsAreVisible();
+
+    return client;
+  });
+
+  Then(/^I expect the login error in position (\d+) to be "([^"]*)"$/, (position, expectedText) => {
+    const loginPage = client.page.loginPage();
+
+    loginPage.verifyLoginErrorByPositionAndExpectedText(position, expectedText);
 
     return client;
   });
