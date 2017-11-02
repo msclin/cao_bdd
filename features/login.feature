@@ -6,7 +6,7 @@ Feature: Common App Login Page
   Background:
     Given I navigate to The Common Application's login screen
   
-  @smoke @regression @marc-debug
+  @smoke @regression
   Scenario: Verify The Initial State of the Common App's Login Page
     Then I expect the Common App Login Page Header to be visible
       And I expect the Common App Login Page Header text to contain text "Sign In to My Application"
