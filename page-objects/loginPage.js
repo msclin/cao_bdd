@@ -5,6 +5,12 @@ const loginPageXpathTemplates = {
 module.exports = {
   commands: [
     {
+      clickForgotPasswordLink() {
+        this.expect.element('@forgotPasswordLink').to.be.visible;
+
+        return this.click('@forgotPasswordLink');
+      },
+
       clickSignInButton() {
         this.expect.element('@signInButton').to.be.visible;
 
@@ -55,6 +61,14 @@ module.exports = {
         return this.expect.element('@createAccountLink').text.to.contain(expectedText);
       },
 
+      verifyForgotPasswordLinkIsVisible() {
+        return this.expect.element('@forgotPasswordLink').to.be.visible;
+      },
+
+      verifyForgotPasswordLinkText(expectedText) {
+        return this.expect.element('@forgotPasswordLink').text.to.contain(expectedText);
+      },
+
       verifyLoginErrorByPositionAndExpectedText(position, expectedText) {
         const xpath = loginPageXpathTemplates.loginPageErrorByPosition(position);
 
@@ -65,6 +79,10 @@ module.exports = {
 
       verifyLoginErrorsAreVisible() {
         return this.expect.element('@loginErrorsContainer').to.be.visible;
+      },
+
+      verifyLoginPageLoaded() {
+        return this.expect.element('@loginFormContainer').to.be.visible;
       },
 
       verifyNeedHelpLinkIsVisible() {
@@ -173,9 +191,19 @@ module.exports = {
       selector: '//a[text()="Terms of Use"]'
     },
 
+    forgotPasswordLink: {
+      locateStrategy: 'xpath',
+      selector: '//a[@href="/forgot-password"]'
+    },
+
     loginErrorsContainer: {
       locateStrategy: 'xpath',
       selector: '//div[@id="loginError"]'
+    },
+
+    loginFormContainer: {
+      locateStrategy: 'xpath',
+      selector: '//section[@class="ca-login-wrap"]'
     },
 
     needHelpLink: {

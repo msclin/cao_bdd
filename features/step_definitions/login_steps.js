@@ -217,6 +217,30 @@ defineSupportCode(({ Given, Then, When }) => {
     return client;
   });
 
+  Then(/^I have successfully logged out$/, () => {
+    const loginPage = client.page.loginPage();
+
+    loginPage.verifyLoginPageLoaded();
+
+    return client;
+  });
+
+  Then(/^I expect the forgot password link to be visible$/, () => {
+    const loginPage = client.page.loginPage();
+
+    loginPage.verifyForgotPasswordLinkIsVisible();
+
+    return client;
+  });
+
+  Then(/^I expect the forgot password link text to contain text "([^"]*)"$/, (expectedText) => {
+    const loginPage = client.page.loginPage();
+
+    loginPage.verifyForgotPasswordLinkText(expectedText);
+
+    return client;
+  });
+
   When(/^I enter "([^"]*)" in the username field$/, (username) => {
     const loginPage = client.page.loginPage();
 
@@ -236,6 +260,16 @@ defineSupportCode(({ Given, Then, When }) => {
   When(/^I click on the Sign In button$/, () => {
     const loginPage = client.page.loginPage();
 
+    loginPage.clickSignInButton();
+
+    return client;
+  });;
+
+  When(/^I log into the application with email address "([^"]*)" and password "([^"]*)"$/, (username, password) => {
+    const loginPage = client.page.loginPage();
+
+    loginPage.enterUsername(username);
+    loginPage.enterPassword(password);
     loginPage.clickSignInButton();
 
     return client;
