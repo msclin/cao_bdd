@@ -1,0 +1,17 @@
+{
+  "name": "common_app_e2e_tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chromedriver": "^2.33.0",
+    "cucumber": "^3.0.4",
+    "nightwatch": "^0.9.16",
+    "nightwatch-cucumber": "^8.2.2"
+  }
+}
