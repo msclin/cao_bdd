@@ -6,6 +6,7 @@ Feature: Common App Login Page
   Background:
     Given I navigate to The Common Application's login screen
   
+  @smoke
   Scenario: Verify The Initial State of the Common App's Login Page
     Then I expect the Common App Helper Status to be visible
       And I expect the Common App Helper Status text to contain text "Deadline coming up? You'll need to submit your application by 11:59pm your local time on the deadline date--but you don't have to wait until then. Learn more about deadlines here. Need help or have a question? The Applicant Solutions Center is open 24 hours a day, 7 days a week."
@@ -31,7 +32,13 @@ Feature: Common App Login Page
       And I expect the system requirements link to be visible
       And I expect the system requirements link to contain text "System Requirements"
 
+  @smoke @marc-debug
   Scenario: Log Into A Common Application Account
     When I enter "marc.clinedinst@gmail.com" in the username field
-      And I enter "C0mM0n4pp1?" in the password field
-      And I pause for 2 seconds
+    Then I expect the username field to have a value of "marc.clinedinst@gmail.com"
+
+    And I enter "C0mM0n4pp1?" in the password field
+    Then I expect the password field to have a value of "C0mM0n4pp1?"
+
+    When I click on the Sign In button
+    Then I have logged in successfully

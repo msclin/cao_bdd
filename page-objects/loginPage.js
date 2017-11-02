@@ -1,6 +1,12 @@
 module.exports = {
   commands: [
     {
+      clickSignInButton() {
+        this.expect.element('@signInButton').to.be.visible;
+
+        return this.click('@signInButton');
+      },
+
       enterPassword(password) {
         return this.setValue('@passwordField', password);
       },
@@ -69,6 +75,10 @@ module.exports = {
         return this.expect.element('@passwordFieldLabel').text.to.contain(expectedText);
       },
 
+      verifyPasswordFieldValue(expectedValue) {
+        return this.expect.element('@passwordField').to.have.attribute('value').which.equals(expectedValue);
+      },
+
       verifyPrivacyPolicyLinkIsVisible() {
         return this.expect.element('@footerLinkPrivacyPolicy').to.be.visible;
       },
@@ -99,6 +109,10 @@ module.exports = {
 
       verifyUsernameFieldLabelText(expectedText) {
         return this.expect.element('@usernameFieldLabel').text.to.contain(expectedText);
+      },
+
+      verifyUsernameFieldValue(expectedValue) {
+        return this.expect.element('@usernameField').to.have.attribute('value').which.equals(expectedValue);
       }
     }
   ],
@@ -157,6 +171,11 @@ module.exports = {
     passwordFieldLabel: {
       locateStrategy: 'xpath',
       selector: '//label[@for="ApplicantPassword"]'
+    },
+
+    signInButton: {
+      locateStrategy: 'xpath',
+      selector: '//input[@type="submit"]'
     },
 
     usernameField: {

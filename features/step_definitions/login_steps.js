@@ -170,6 +170,29 @@ defineSupportCode(({ Given, Then, When }) => {
     return client;
   });
 
+  Then(/^I expect the (password|username) field to have a value of "([^"]*)"$/, (field, expectedValue) => {
+    const loginPage = client.page.loginPage();
+
+    switch (field) {
+      case 'password':
+        loginPage.verifyPasswordFieldValue(expectedValue);
+        break;
+      case 'username':
+        loginPage.verifyUsernameFieldValue(expectedValue);
+        break;
+    }
+
+    return client;
+  });
+
+  Then(/^I have logged in successfully$/, () => {
+    const accountDashboard = client.page.accountDashboard();
+
+    accountDashboard.verifyDashboardTabIsVisible();
+
+    return client;
+  });
+
   When(/^I enter "([^"]*)" in the username field$/, (username) => {
     const loginPage = client.page.loginPage();
 
@@ -182,6 +205,14 @@ defineSupportCode(({ Given, Then, When }) => {
     const loginPage = client.page.loginPage();
 
     loginPage.enterPassword(password);
+
+    return client;
+  });
+
+  When(/^I click on the Sign In button$/, () => {
+    const loginPage = client.page.loginPage();
+
+    loginPage.clickSignInButton();
 
     return client;
   });
