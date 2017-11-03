@@ -58,7 +58,7 @@ Feature: Common App Forgot Password Page
       And the forgot password error has text "You must supply a valid email address."
       And the forgot password error icon is visible
 
-  @smoke @regression @marc-debug
+  @smoke @regression
   Scenario: Enter Invalid Email Address, Click Continue Button, Verify Error State, Correct Error, Click Continue Button, And Go Back To Login Screen
     When I enter "test" in the forgot password email field
       And I click the continue button on the forgot password screen
@@ -76,4 +76,9 @@ Feature: Common App Forgot Password Page
       And the go to login page button has text "Go to login page"
 
     When I click the go to login page button
+    Then I am on the login page
+
+  @smoke @regression @marc-debug
+  Scenario: Immediately Click Cancel Button
+    When I click the cancel link
     Then I am on the login page

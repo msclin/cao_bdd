@@ -1,3 +1,4 @@
+@login
 Feature: Common App Login Page
   As an applicant using the Common Application
   I want to be able to log into my account

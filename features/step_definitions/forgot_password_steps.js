@@ -109,4 +109,8 @@ defineSupportCode(({ Given, Then, When }) => {
   When(/^I click the go to login page button$/, () => {
     return client.page.forgotPassword().clickGoToLoginPageButton();
   });
+
+  When(/^I click the cancel link$/, () => {
+    return client.page.forgotPassword().clickCancelLink();
+  });
 });

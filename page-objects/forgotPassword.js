@@ -14,6 +14,10 @@ const forgotPasswordXpathTemplates = {
 module.exports = {
   commands: [
     {
+      clickCancelLink() {
+        return this.click('@cancelLink');
+      },
+
       clickContinueButton() {
         return this.click('@continueButton');
       },
