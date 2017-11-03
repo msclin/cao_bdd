@@ -36,8 +36,8 @@ Feature: Common App Login Page
 
   @smoke @regression
   Scenario: Log Into A Common Application Account
-    When I enter "marc.clinedinst@gmail.com" in the username field
-    Then I expect the username field to have a value of "marc.clinedinst@gmail.com"
+    When I enter "cao.test@yahoo.com" in the username field
+    Then I expect the username field to have a value of "cao.test@yahoo.com"
       And I expect no login errors to be visible
 
     When I enter "C0mM0n4pp1?" in the password field
@@ -60,8 +60,8 @@ Feature: Common App Login Page
   Scenario: Verify Login Form Errors After Entering Only Username And Clicking Submit Button
     Then I expect no login errors to be visible
 
-    When I enter "marc.clinedinst@gmail.com" in the username field
-    Then I expect the username field to have a value of "marc.clinedinst@gmail.com"
+    When I enter "cao.test@yahoo.com" in the username field
+    Then I expect the username field to have a value of "cao.test@yahoo.com"
       And I expect no login errors to be visible
   
     When I click on the Sign In button
@@ -86,8 +86,8 @@ Feature: Common App Login Page
   Scenario: Verify Login Form Errors After Entering Username and Incorrect Password
     Then I expect no login errors to be visible
 
-    When I enter "marc.clinedinst@gmail.com" in the username field
-    Then I expect the username field to have a value of "marc.clinedinst@gmail.com"
+    When I enter "cao.test@yahoo.com" in the username field
+    Then I expect the username field to have a value of "cao.test@yahoo.com"
       And I expect no login errors to be visible
 
     When I enter "foobar" in the password field
@@ -103,7 +103,7 @@ Feature: Common App Login Page
   Scenario: Log Into Account And Then Log Out
     Then I expect no login errors to be visible
 
-    When I log into the application with email address "marc.clinedinst@gmail.com" and password "C0mM0n4pp1?"
+    When I log into the application with email address "cao.test@yahoo.com" and password "C0mM0n4pp1?"
     Then I have logged in successfully
 
     When I click the Sign Out Button
