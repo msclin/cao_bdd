@@ -9,7 +9,7 @@ Feature: Common App Forgot Password Page
       And I click the forgot password link
     Then I am on the forgot password screen
 
-  @smoke @regression @marc-debug
+  @smoke @regression
   Scenario: Verify The Initial State of Common App's Forgot Password Page
     Then the forgot password page header is visible
       And the forgot password page header contains text "Password Reset"
@@ -25,3 +25,19 @@ Feature: Common App Forgot Password Page
       And the continue button is visible
       And the continue button has text "Continue"
       And there are no forgot password errors present
+
+  @smoke @regression @marc-debug
+  Scenario: Enter Email Address, Click Continue, And Go Back To Login Screen
+    When I enter "test@commonapp.org" in the forgot password email field
+    Then the forgot password email field contains the value "test@commonapp.org"
+
+    When I click the continue button on the forgot password screen
+      And I pause for 1 seconds to wait for the animation to complete
+    Then the first step is marked as complete with a checkmark
+      And the step in position 2 is active
+      And the forgot password confirmation text reads "An email with a link to reset your password has been sent to the email address you provided."
+      And the go to login page button is visible
+      And the go to login page button has text "Go to login page"
+
+    When I click the go to login page button
+    Then I am on the login page

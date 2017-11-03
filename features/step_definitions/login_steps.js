@@ -10,6 +10,10 @@ defineSupportCode(({ Given, Then, When }) => {
     return client;
   });
 
+  Then(/^I am on the login page$/, () => {
+    return client.page.loginPage().verifyLoginPageLoaded();
+  });
+
   Then(/^I expect the Common App Helper Status to be visible$/, () => {
     const loginPage = client.page.loginPage();
 

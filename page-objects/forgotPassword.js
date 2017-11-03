@@ -14,6 +14,18 @@ const forgotPasswordXpathTemplates = {
 module.exports = {
   commands: [
     {
+      clickContinueButton() {
+        return this.click('@continueButton');
+      },
+
+      enterEmailInForgotPasswordEmailField(email) {
+        return this.setValue('@emailInput', email);
+      },
+
+      clickGoToLoginPageButton() {
+        return this.click('@goToLoginPageButton');
+      },
+
       verifyCancelLinkIsVisible() {
         return this.expect.element('@cancelLink').to.be.visible;
       },
@@ -38,6 +50,18 @@ module.exports = {
         return this.expect.element('@emailFieldLabel').text.to.contain(expectedText);
       },
 
+      verifyFirstStepIsMarkedAsComplete() {
+        return this.expect.element('@firstStepCheckMark').to.have.attribute('class').which.equals();
+      },
+
+      verifyForgotPasswordConfirmationText(expectedText) {
+        return this.expect.element('@forgotPasswordConfirmationMessage').text.to.contain(expectedText);
+      },
+
+      verifyForgotPasswordEmailFieldText(expectedText) {
+        return this.expect.element('@emailInput').to.have.attribute('value').which.equals(expectedText);
+      },
+
       verifyForgotPasswordPageHeaderIsVisible() {
         return this.expect.element('@pageHeader').to.be.visible;
       },
@@ -52,6 +76,14 @@ module.exports = {
 
       verifyFormHelpText(expectedText) {
         return this.expect.element('@formHelpText').text.to.contain(expectedText);
+      },
+
+      verifyGoToLoginPageButtonIsVisible() {
+        return this.expect.element('@goToLoginPageButton').to.be.visible;
+      },
+
+      verifyGoToLoginPageButtonText(expectedText) {
+        return this.expect.element('@goToLoginPageButton').to.have.attribute('value').which.equals(expectedText);
       },
 
       verifyNoForgotPasswordErrorsArePresent() {
@@ -109,9 +141,24 @@ module.exports = {
       selector: '//span[@id="errMsg"]'
     },
 
+    firstStepCheckMark: {
+      locateStrategy: 'xpath',
+      selector: '//span[@class="i-l-aria"]'
+    },
+
+    forgotPasswordConfirmationMessage: {
+      locateStrategy: 'xpath',
+      selector: '//div[@id="step2"]//p'
+    },
+
     formHelpText: {
       locateStrategy: 'xpath',
       selector: '//div[@class="form"]//p'
+    },
+
+    goToLoginPageButton: {
+      locateStrategy: 'xpath',
+      selector: '//input[@id="resetContinue"]'
     },
 
     pageContent: {

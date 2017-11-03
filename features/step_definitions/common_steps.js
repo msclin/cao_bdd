@@ -2,7 +2,7 @@ const { client } = require('nightwatch-cucumber');
 const { defineSupportCode } = require('cucumber');
 
 defineSupportCode(({ Given, Then, When }) => {
-  When(/^I pause for (\d+) seconds$/, (seconds) => {
+  When(/^I pause for (\d+) seconds to wait for the animation to complete$/, (seconds) => {
     return client.pause(seconds * 1000);
   });
 

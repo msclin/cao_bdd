@@ -54,7 +54,39 @@ defineSupportCode(({ Given, Then, When }) => {
     return client.page.forgotPassword().verifyNoForgotPasswordErrorsArePresent();
   });
 
+  Then(/^the forgot password email field contains the value "([^"]*)"$/, (expectedText) => {
+    return client.page.forgotPassword().verifyForgotPasswordEmailFieldText(expectedText);
+  });
+
+  Then(/^the first step is marked as complete with a checkmark$/, () => {
+    return client.page.forgotPassword().verifyFirstStepIsMarkedAsComplete();
+  });
+
+  Then(/^the forgot password confirmation text reads "([^"]*)"$/, (expectedText) => {
+    return client.page.forgotPassword().verifyForgotPasswordConfirmationText(expectedText);
+  });
+
+  Then(/^the go to login page button is visible$/, () => {
+    return client.page.forgotPassword().verifyGoToLoginPageButtonIsVisible();
+  });
+
+  Then(/^the go to login page button has text "([^"]*)"$/, (expectedText) => {
+    return client.page.forgotPassword().verifyGoToLoginPageButtonText(expectedText);
+  });
+
   When(/^I click the forgot password link$/, () => {
     return client.page.loginPage().clickForgotPasswordLink();
+  });
+
+  When(/^I enter "([^"]*)" in the forgot password email field$/, (email) => {
+    return client.page.forgotPassword().enterEmailInForgotPasswordEmailField(email);
+  })
+
+  When(/^I click the continue button on the forgot password screen$/, () => {
+    return client.page.forgotPassword().clickContinueButton();
+  });
+
+  When(/^I click the go to login page button$/, () => {
+    return client.page.forgotPassword().clickGoToLoginPageButton();
   });
 });
