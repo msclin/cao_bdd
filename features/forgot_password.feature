@@ -49,3 +49,31 @@ Feature: Common App Forgot Password Page
     Then a forgot password error is visible
       And the forgot password error has text "You must supply a valid email address."
       And the forgot password error icon is visible
+
+  @smoke @regression
+  Scenario: Enter Invalid Email Address, Click Continue Button, And Verify Error State
+    When I enter "test" in the forgot password email field
+      And I click the continue button on the forgot password screen
+    Then a forgot password error is visible
+      And the forgot password error has text "You must supply a valid email address."
+      And the forgot password error icon is visible
+
+  @smoke @regression @marc-debug
+  Scenario: Enter Invalid Email Address, Click Continue Button, Verify Error State, Correct Error, Click Continue Button, And Go Back To Login Screen
+    When I enter "test" in the forgot password email field
+      And I click the continue button on the forgot password screen
+    Then a forgot password error is visible
+      And the forgot password error has text "You must supply a valid email address."
+      And the forgot password error icon is visible
+
+    When I enter "test@test.com" in the forgot password email field
+      And I click the continue button on the forgot password screen
+      And I pause for 1 seconds to wait for the animation to complete
+    Then the first step is marked as complete with a checkmark
+      And the step in position 2 is active
+      And the forgot password confirmation text reads "An email with a link to reset your password has been sent to the email address you provided."
+      And the go to login page button is visible
+      And the go to login page button has text "Go to login page"
+
+    When I click the go to login page button
+    Then I am on the login page

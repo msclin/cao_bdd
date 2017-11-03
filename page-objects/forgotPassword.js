@@ -19,6 +19,8 @@ module.exports = {
       },
 
       enterEmailInForgotPasswordEmailField(email) {
+        this.clearValue('@emailInput');
+
         return this.setValue('@emailInput', email);
       },
 
