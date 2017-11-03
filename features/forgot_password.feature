@@ -25,8 +25,9 @@ Feature: Common App Forgot Password Page
       And the continue button is visible
       And the continue button has text "Continue"
       And there are no forgot password errors present
+      And the forgot password error icon is not visible
 
-  @smoke @regression @marc-debug
+  @smoke @regression
   Scenario: Enter Email Address, Click Continue, And Go Back To Login Screen
     When I enter "test@commonapp.org" in the forgot password email field
     Then the forgot password email field contains the value "test@commonapp.org"
@@ -41,3 +42,10 @@ Feature: Common App Forgot Password Page
 
     When I click the go to login page button
     Then I am on the login page
+
+  @smoke @regression
+  Scenario: Immediately Click Continue Button And Verify Error State
+    When I click the continue button on the forgot password screen
+    Then a forgot password error is visible
+      And the forgot password error has text "You must supply a valid email address."
+      And the forgot password error icon is visible

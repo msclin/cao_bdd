@@ -62,6 +62,22 @@ module.exports = {
         return this.expect.element('@emailInput').to.have.attribute('value').which.equals(expectedText);
       },
 
+      verifyPasswordErrorIconIsVisible() {
+        return this.expect.element('@passwordErrorIcon').to.be.visible;
+      },
+
+      verifyPasswordErrorIconIsNotVisible() {
+        return this.expect.element('@passwordErrorIcon').to.not.be.visible;
+      },
+
+      verifyForgotPasswordErrorIsVisible() {
+        return this.expect.element('@errorMessage').to.be.visible;
+      },
+
+      verifyForgotPasswordErrorText(expectedText) {
+        return this.expect.element('@errorMessage').text.to.contain(expectedText);
+      },
+
       verifyForgotPasswordPageHeaderIsVisible() {
         return this.expect.element('@pageHeader').to.be.visible;
       },
@@ -169,6 +185,11 @@ module.exports = {
     pageHeader: {
       locateStrategy: 'xpath',
       selector: '//h2[@class="ca-page-red-title"]'
-    }
+    },
+
+    passwordErrorIcon: {
+      locateStrategy: 'xpath',
+      selector: '//span[contains(@class, "error")]//span[@class="i-l-aria"]'
+    },
   }
 }

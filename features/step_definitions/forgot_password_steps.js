@@ -74,6 +74,26 @@ defineSupportCode(({ Given, Then, When }) => {
     return client.page.forgotPassword().verifyGoToLoginPageButtonText(expectedText);
   });
 
+  Then(/^a forgot password error is visible$/, () => {
+    return client.page.forgotPassword().verifyForgotPasswordErrorIsVisible();
+  });
+
+  Then(/^the forgot password error has text "([^"]*)"$/, (expectedText) => {
+    return client.page.forgotPassword().verifyForgotPasswordErrorText(expectedText);
+  });
+
+  Then(/^the forgot password error icon (is|is not) visible$/, (isVisible) => {
+    const forgotPassword = client.page.forgotPassword();
+
+    if (isVisible === 'is') {
+      forgotPassword.verifyPasswordErrorIconIsVisible();
+    } else {
+      forgotPassword.verifyPasswordErrorIconIsNotVisible();
+    }
+
+    return client;
+  });
+
   When(/^I click the forgot password link$/, () => {
     return client.page.loginPage().clickForgotPasswordLink();
   });
