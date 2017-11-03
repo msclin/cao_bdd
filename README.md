@@ -2,6 +2,8 @@
 
 This code repository contains some end-to-end tests for a couple of features of [The Common Application's](http://www.commonapp.org/) college application software.  Specifically, it tests the forgot password and login features using a test account.
 
+These tests were implemented using [Nightwatch.js](http://nightwatchjs.org/) and the [Nightwatch-Cucumber plugin](https://github.com/mucsi96/nightwatch-cucumber).  The tests follow the BDD style of testing.
+
 ## Instructions
 
 To run this code, follow these steps:
